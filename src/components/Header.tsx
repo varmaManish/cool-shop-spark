@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { ShoppingCart, Search, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,26 +12,72 @@ interface HeaderProps {
 const Header = ({ cartItemsCount, onCartClick }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const location = useLocation();
 
   return (
     <header className="bg-background border-b border-border sticky top-0 z-50 backdrop-blur-sm bg-background/95">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
+          <Link to="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
             <div className="w-8 h-8 bg-gradient-to-r from-primary to-accent rounded-lg flex items-center justify-center">
               <span className="text-primary-foreground font-bold text-lg">T</span>
             </div>
             <span className="text-xl font-bold text-foreground">TechStore</span>
-          </div>
+          </Link>
 
           {/* Navigation - Desktop */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-foreground hover:text-primary transition-colors">Home</a>
-            <a href="#" className="text-foreground hover:text-primary transition-colors">Products</a>
-            <a href="#" className="text-foreground hover:text-primary transition-colors">Categories</a>
-            <a href="#" className="text-foreground hover:text-primary transition-colors">About</a>
-            <a href="#" className="text-foreground hover:text-primary transition-colors">Contact</a>
+            <Link 
+              to="/" 
+              className={`transition-colors ${
+                location.pathname === "/" 
+                  ? "text-primary font-medium" 
+                  : "text-foreground hover:text-primary"
+              }`}
+            >
+              Home
+            </Link>
+            <Link 
+              to="/products" 
+              className={`transition-colors ${
+                location.pathname === "/products" 
+                  ? "text-primary font-medium" 
+                  : "text-foreground hover:text-primary"
+              }`}
+            >
+              Products
+            </Link>
+            <Link 
+              to="/categories" 
+              className={`transition-colors ${
+                location.pathname === "/categories" 
+                  ? "text-primary font-medium" 
+                  : "text-foreground hover:text-primary"
+              }`}
+            >
+              Categories
+            </Link>
+            <Link 
+              to="/about" 
+              className={`transition-colors ${
+                location.pathname === "/about" 
+                  ? "text-primary font-medium" 
+                  : "text-foreground hover:text-primary"
+              }`}
+            >
+              About
+            </Link>
+            <Link 
+              to="/contact" 
+              className={`transition-colors ${
+                location.pathname === "/contact" 
+                  ? "text-primary font-medium" 
+                  : "text-foreground hover:text-primary"
+              }`}
+            >
+              Contact
+            </Link>
           </nav>
 
           {/* Search and Actions */}
@@ -93,11 +140,61 @@ const Header = ({ cartItemsCount, onCartClick }: HeaderProps) => {
             
             {/* Mobile Navigation */}
             <nav className="flex flex-col space-y-3">
-              <a href="#" className="text-foreground hover:text-primary transition-colors py-2">Home</a>
-              <a href="#" className="text-foreground hover:text-primary transition-colors py-2">Products</a>
-              <a href="#" className="text-foreground hover:text-primary transition-colors py-2">Categories</a>
-              <a href="#" className="text-foreground hover:text-primary transition-colors py-2">About</a>
-              <a href="#" className="text-foreground hover:text-primary transition-colors py-2">Contact</a>
+              <Link 
+                to="/" 
+                className={`transition-colors py-2 ${
+                  location.pathname === "/" 
+                    ? "text-primary font-medium" 
+                    : "text-foreground hover:text-primary"
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Home
+              </Link>
+              <Link 
+                to="/products" 
+                className={`transition-colors py-2 ${
+                  location.pathname === "/products" 
+                    ? "text-primary font-medium" 
+                    : "text-foreground hover:text-primary"
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Products
+              </Link>
+              <Link 
+                to="/categories" 
+                className={`transition-colors py-2 ${
+                  location.pathname === "/categories" 
+                    ? "text-primary font-medium" 
+                    : "text-foreground hover:text-primary"
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Categories
+              </Link>
+              <Link 
+                to="/about" 
+                className={`transition-colors py-2 ${
+                  location.pathname === "/about" 
+                    ? "text-primary font-medium" 
+                    : "text-foreground hover:text-primary"
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                About
+              </Link>
+              <Link 
+                to="/contact" 
+                className={`transition-colors py-2 ${
+                  location.pathname === "/contact" 
+                    ? "text-primary font-medium" 
+                    : "text-foreground hover:text-primary"
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Contact
+              </Link>
             </nav>
           </div>
         )}
